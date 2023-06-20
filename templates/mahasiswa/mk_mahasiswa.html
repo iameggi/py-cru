@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Mata Kuliah | Mahasiswa</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../static/assets/course.png" />
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <!-- Link font awesome-->
+    <link href=" https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../static/css/admin/styles.css" rel="stylesheet" />
+
+    <style>
+        .card {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            margin-top: 30;
+            margin-bottom: 0;
+            margin-left: 50px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function(){
+            getModulByMK()
+        })
+
+        function getModulByMK(){
+            $('#modul-container').empty()
+            $('#modul-container').append(`
+                <div class="card text-center" style="width: 18rem;">
+                    Loading Moduls
+                </div>
+            `)
+            let mk_id = $('#mata-kuliah').val()
+
+            $.ajax({
+                url:`/mahasiswa/modul/get/${mk_id}`,
+                method:"GET",
+                success: function(data){
+                    $('#modul-container').empty()
+                    if(data.moduls.length > 0){
+                        data.moduls.forEach(function(modul){
+                        let temp_html = `
+                            <div class="card text-center" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">${modul.nama_modul}</h5>
+                                    <a href="/mahasiswa/modul_mhs/${modul._id}" class="btn btn-success"> Open</a>
+                                    
+                                </div>
+                            </div>
+                            `
+
+                            $('#modul-container').append(temp_html)
+                        })
+                    }else{
+                        $('#modul-container').append(`
+                            <div class="card text-center" style="width: 18rem;">
+                                Tidak Ada Data Modul!
+                            </div>
+                        `)
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light"> Learning-X</div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/mahasiswa/dashboard"><i
+                        class="fas fa-fw fa-tachometer-alt"></i>Dashboard</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/mahasiswa/mk"><i
+                        class='fas fa-book'></i>Mata Kuliah</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/mahasiswa/rekap_nilai"><i
+                        class='fas fa-receipt'></i> Rekap Nilai</a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="sidebarToggle"></button>
+                    <h2 class="title">Web-Based Learning Information System</h2>
+                    <a href="/mahasiswa/profil" class="profile-icon">
+                        <i class="fa fa-user-circle fa-lg"></i>
+                    </a>
+                </div>
+            </nav>
+            <!-- Page content-->
+            <div class="container-fluid">
+                <h3 class="mt-4">Mata Kuliah</h3>
+                <div>
+                    <select name="" id="mata-kuliah" onchange="getModulByMK()">
+                        {% for data in data_mk %}
+                        <option value="{{data['_id']}}">{{data['nama_mk']}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="mb-4 mt-4">
+                    <div id="modul-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <footer class="footer bg-light">
+        <div class="container-fluid">
+            <p>&copy; 2023 Web-Based Learning Information System</p>
+        </div>
+    </footer> -->
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="../../static/js/scripts.js"></script>
+</body>
+
+</html>

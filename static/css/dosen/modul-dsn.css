@@ -1,0 +1,119 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    background-color: rgb(251, 251, 253);
+}
+
+body {
+    background-color: #2F324F;
+}
+
+.admin-page {
+    background-color: rgb(251, 251, 253);
+}
+
+header {
+    background: rgb(251, 251, 253);
+    color: #111010;
+    padding: 5px;
+    margin: -8px -8px;
+    text-align: center;
+}
+
+hr {
+    border-top: 4px double #fcfafa;
+
+}
+
+section.main {
+    flex: 80%;
+    min-height: 530px;
+    padding: 15px 20px;
+    margin-left: 70px;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+
+@media(max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+.menu {
+    padding: 0px;
+    list-style-type: none;
+    margin: 0;
+    width: 180px;
+    height: 91%;
+    background-color: rgb(251, 251, 253);
+    position: absolute;
+    z-index: 1;
+    top: 59px;
+    left: 0;
+    bottom: 1px;
+    overflow-x: hidden;
+}
+
+.menu li {
+    border-bottom: 2px dotted #2F324F;
+}
+
+.menu a {
+    display: block;
+    padding: 20px 20px;
+    list-style: none;
+    color: rgb(7, 6, 6);
+    text-decoration: none;
+
+
+}
+
+.menu a:hover {
+    background: #2F324F;
+    color: rgb(250, 247, 247);
+}
+
+.profile-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #333333;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    size: 30px;
+}
+
+.judul {
+    position: relative;
+    margin-bottom: 0px;
+    margin-top: auto;
+    margin-left: 30px;
+}
+
+/* Styling untuk content */
+.content {
+    margin-left: 20%; /* Memberi ruang di sebelah kiri untuk sidebar */
+    padding: 20px;
+  }
+  
+  /* Mengatur posisi card dalam content */
+  .card {
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+    margin-top: 30px;
+    margin-bottom: 0;
+    margin-left: 80px;
+  }
+  

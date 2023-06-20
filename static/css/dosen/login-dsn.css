@@ -1,0 +1,32 @@
+body{
+    background-color: #F1DBD6;
+}
+
+.dosen-page{
+    background-color: #99ACFF;
+}
+
+li{
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    color: #99ACFF;
+    font-size: 30px;
+    border-radius: 5px;
+    text-align: center;
+}
+.login{
+    text-align: center;
+    align-items: center;
+}
+
+.col-lg-12 {
+    background-color: #99ACFF;
+    border: 2px solid black;
+}
+
+.nav-item {
+    margin: 0 20px;
+    width: 200px;
+}
+
